@@ -1,2 +1,3 @@
 - [Лабораторная работа №1 — Знакомство с Android Studio](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab1)
 - [Лабораторная работа №2 — Менеджеры размещения в Android](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab2)
+- [Практическая работа №3 — Обработка событий клика](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab3)
