@@ -164,3 +164,296 @@ private fun applyBackgroundColor(color: String) {
 `requestCode` нужен, чтобы понять, из какого именно запроса пришел результат.  
 В `onActivityResult()` обычно выполняют проверку `requestCode` и `resultCode`, чтобы раздельно обработать несколько сценариев возврата данных.  
 В новом API (`ActivityResultLauncher`) обычно создают отдельные launcher-обработчики под разные запросы.
+
+---
+
+## Полный код (Kotlin + XML)
+
+Ниже приведен только код самостоятельной части (без дополнительных демонстрационных файлов).
+
+### `MainActivity.kt`
+
+```kotlin
+package com.byprogger.lab5
+
+import android.content.Intent
+import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import com.byprogger.lab5.databinding.ActivityMainBinding
+
+class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
+    private val settingsLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode != RESULT_OK) return@registerForActivityResult
+
+        val color = result.data?.getStringExtra("COLOR") ?: return@registerForActivityResult
+        applyBackgroundColor(color)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val btnSettings = binding.btnSettings
+        val btnAbout = binding.btnAbout
+
+        btnSettings.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            settingsLauncher.launch(intent)
+        }
+
+        btnAbout.setOnClickListener {
+            val intent = Intent(this, AboutActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun applyBackgroundColor(color: String) {
+        when (color) {
+            "red" -> binding.tvResult.setTextColor(getColor(android.R.color.holo_red_light))
+            "green" -> binding.tvResult.setTextColor(getColor(android.R.color.holo_green_light))
+            "blue" -> binding.tvResult.setTextColor(getColor(android.R.color.holo_blue_light))
+        }
+    }
+}
+```
+
+### `SettingsActivity.kt`
+
+```kotlin
+package com.byprogger.lab5
+
+import android.content.Intent
+import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.byprogger.lab5.databinding.ActivitySettingsBinding
+
+class SettingsActivity : AppCompatActivity() {
+    lateinit var binding: ActivitySettingsBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val radioGroupColor = binding.radioGroupColor
+        val  btnSave = binding.btnSave
+
+        btnSave.setOnClickListener {
+            val selectedId: Int = radioGroupColor.checkedRadioButtonId
+            var selectedColor = "red"
+
+            if (selectedId == binding.radioGreen.id) {
+                selectedColor = "green"
+            } else if (selectedId == binding.radioBlue.id) {
+                selectedColor = "blue"
+            }
+
+            val resultIntent = Intent()
+            resultIntent.putExtra("COLOR", selectedColor)
+            setResult(RESULT_OK, resultIntent)
+            finish()
+        }
+    }
+}
+```
+
+### `AboutActivity.kt`
+
+```kotlin
+package com.byprogger.lab5
+
+import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.byprogger.lab5.databinding.ActivityAboutBinding
+import com.byprogger.lab5.databinding.ActivitySettingsBinding
+
+class AboutActivity : AppCompatActivity() {
+    lateinit var binding: ActivityAboutBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        binding = ActivityAboutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val btnBack = binding.btnBack
+
+        btnBack.setOnClickListener {
+            finish()
+        }
+    }
+}
+```
+
+### `activity_main.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/tvMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Главный экран"
+        android:textSize="24sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="32dp" />
+
+
+    <Button
+        android:id="@+id/btnSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:text="Настройки" />
+
+
+    <Button
+        android:id="@+id/btnAbout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:text="Об авторе"
+        android:layout_marginTop="8dp" />
+
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+        android:layout_marginTop="32dp"/>
+
+</LinearLayout>
+```
+
+### `activity_settings.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:fitsSystemWindows="true"
+    tools:context=".SettingsActivity">
+
+    <RadioGroup
+        android:id="@+id/radioGroupColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp">
+        
+        <RadioButton
+            android:id="@+id/radioRed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:layout_marginHorizontal="16dp"
+            android:text="Красный" />
+
+        <RadioButton
+            android:id="@+id/radioGreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:text="Зелёный" />
+
+
+        <RadioButton
+            android:id="@+id/radioBlue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:text="Синий" />
+
+    </RadioGroup>
+    
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:text="Сохранить" />
+
+</LinearLayout>
+```
+
+### `activity_about.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Об авторе"
+        android:textSize="24sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="32dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ФИО: Аннагурбанов Байрам"
+        android:layout_marginHorizontal="16dp"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Группа: ИНС-б-о-24-2"
+        android:layout_marginHorizontal="16dp"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Можно добавить ImageView для фото -->
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Назад"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"/>
+
+</LinearLayout>
+```
+

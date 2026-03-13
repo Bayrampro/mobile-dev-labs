@@ -123,3 +123,132 @@
 ## Вывод
 
 В ходе практической работы закреплены навыки отладки Android-приложений через `Logcat` и работы с таймерами. Получен практический опыт организации периодических вычислений, безопасного обновления UI и контроля выполнения задач по времени.
+
+---
+
+## Полный код (Kotlin + XML)
+
+Ниже приведен только код самостоятельной части (вариант 2: последовательность Фибоначчи).
+
+### `Task.kt`
+
+```kotlin
+package com.byprogger.lab6
+
+import android.annotation.SuppressLint
+import android.os.Bundle
+import android.util.Log
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.byprogger.lab6.databinding.ActivityTaskBinding
+import java.util.Timer
+import java.util.TimerTask
+
+class Task : AppCompatActivity() {
+    private lateinit var binding: ActivityTaskBinding
+    private var v1 = 0
+    private var v2 = 1
+    private var result = 0
+    private var counter = 0;
+    private var isRunning = false
+    private val tag = "Task"
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        binding = ActivityTaskBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        var timer = Timer()
+        lateinit var timerTask: TimerTask
+
+        binding.btnStart.setOnClickListener {
+            isRunning = true
+            timer = Timer()
+            timerTask = object : TimerTask() {
+                override fun run() {
+                    runOnUiThread {
+                        if (counter == 60) {
+                            timer.cancel()
+                            isRunning = false
+                            return@runOnUiThread
+                        }
+                        if (counter < 1) {
+                            fib()
+                            return@runOnUiThread
+                        }
+                        fib()
+                        v1 = v2
+                        v2 = result
+                    }
+                }
+            }
+
+            timer.schedule(timerTask, 1000, 1000)
+        }
+
+        binding.btnStop.setOnClickListener {
+            if (!isRunning) return@setOnClickListener
+            timerTask.cancel()
+            timer.cancel()
+            isRunning = false
+        }
+    }
+
+    private fun fib() {
+        if (result != 0) {
+            Log.i(tag, result.toString())
+            if (result == 1) {
+                binding.tvResult.text = "$result"
+            } else {
+                binding.tvResult.text = "${binding.tvResult.text} $result"
+            }
+        }
+        result = v1 + v2
+        counter++
+    }
+}
+```
+
+### `activity_task.xml`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="16dp"
+    android:fitsSystemWindows="true"
+    tools:context=".StopwatchActivity">
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Старт" />
+
+    <Button
+        android:id="@+id/btnStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Стоп" />
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Здесь пока пусто"
+        android:textSize="24sp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="16dp"/>
+
+</LinearLayout>
+```
+
