@@ -5,39 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="16dp"
     android:fitsSystemWindows="true"
-    android:padding="16dp">
+    tools:context=".StopwatchActivity">
 
-    <TextView
-        android:id="@+id/tvTimer"
+    <Chronometer
+        android:id="@+id/chronometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ожидание..."
-        android:textSize="18sp"
-        android:layout_gravity="center_horizontal"
+        android:textSize="40sp"
         android:layout_marginBottom="32dp" />
 
     <Button
-        android:id="@+id/btnStartTimer"
+        android:id="@+id/btnStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Запустить таймер"
-        android:layout_gravity="center_horizontal" />
+        android:text="Старт" />
 
     <Button
-        android:id="@+id/btnGoToChronometer"
+        android:id="@+id/btnStop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Хронометр"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="8dp"
+        android:text="Стоп" />
 
     <Button
-        android:id="@+id/btnGoToTask"
+        android:id="@+id/btnReset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Задача"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp" />
+        android:text="Сброс"
+        android:layout_marginTop="8dp" />
 
 </LinearLayout>
