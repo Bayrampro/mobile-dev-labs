@@ -125,3 +125,42 @@ private fun applyBackgroundColor(color: String) {
 ## Вывод
 
 В ходе практической работы закреплены навыки навигации между Activity, передачи данных через результат Activity и динамического изменения UI по пользовательским настройкам. Практически отработан сценарий «выбор в настройках -> возврат -> применение на главном экране».
+
+---
+
+## Ответы на контрольные вопросы
+
+**1. Что такое Intent? Какие существуют типы Intent (явные и неявные)? Приведите примеры.**  
+`Intent` — это объект сообщения в Android для запуска компонентов (Activity, Service) и передачи данных.  
+Явный (`explicit`) Intent указывает конкретный класс, например:
+`Intent(this, SettingsActivity::class.java)`.  
+Неявный (`implicit`) Intent описывает действие без конкретного класса, например:
+`Intent(Intent.ACTION_VIEW, Uri.parse("https://developer.android.com"))`.
+
+**2. Как передать данные из одной Activity в другую через Intent? Какие ограничения по типам?**  
+Данные передаются через `putExtra(...)`, принимаются через `get...Extra(...)`.  
+Поддерживаются примитивы, `String`, `Bundle`, массивы, а также объекты `Parcelable`/`Serializable`.  
+Ограничение: данные должны быть сериализуемыми между процессами и не слишком большими (не стоит передавать крупные объекты, лучше хранить их в БД/файлах).
+
+**3. Разница между `startActivity()` и `startActivityForResult()`?**  
+`startActivity()` — просто открывает экран без ожидания результата.  
+`startActivityForResult()` (устаревший API) открывает экран с возвратом данных.  
+Современная замена — `ActivityResultLauncher` + `registerForActivityResult`, что и используется в Lab5.
+
+**4. Назначение `setResult()` и `finish()` при возврате данных из дочерней Activity.**  
+`setResult(...)` устанавливает код результата и `Intent` с данными для родительской Activity.  
+`finish()` закрывает дочернюю Activity и возвращает управление обратно, передавая ранее установленный результат.
+
+**5. Что будет, если не зарегистрировать Activity в `AndroidManifest.xml`?**  
+При попытке открыть такую Activity приложение завершится с ошибкой времени выполнения (Activity не будет найдена системой).
+
+**6. Какие методы жизненного цикла вызываются при переходе MainActivity -> SettingsActivity и обратно?**  
+При открытии `SettingsActivity`:  
+`MainActivity.onPause()` -> `SettingsActivity.onCreate()` -> `SettingsActivity.onStart()` -> `SettingsActivity.onResume()` -> `MainActivity.onStop()` (если полностью перекрыта).  
+При возврате назад:  
+`SettingsActivity.onPause()` -> `MainActivity.onRestart()` -> `MainActivity.onStart()` -> `MainActivity.onResume()` -> `SettingsActivity.onStop()` -> `SettingsActivity.onDestroy()`.
+
+**7. Для чего нужен `requestCode` в `startActivityForResult()`? Как обрабатывать несколько запросов?**  
+`requestCode` нужен, чтобы понять, из какого именно запроса пришел результат.  
+В `onActivityResult()` обычно выполняют проверку `requestCode` и `resultCode`, чтобы раздельно обработать несколько сценариев возврата данных.  
+В новом API (`ActivityResultLauncher`) обычно создают отдельные launcher-обработчики под разные запросы.
