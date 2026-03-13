@@ -2,3 +2,4 @@
 - [Лабораторная работа №2 — Менеджеры размещения в Android](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab2)
 - [Практическая работа №3 — Обработка событий клика](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab3)
 - [Практическая работа №4 — Работа с встроенной базой данных SQLite](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab4)
+- [Практическая работа №5 — Дополнительные Activity (настройки и «Об авторе»)](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab5)

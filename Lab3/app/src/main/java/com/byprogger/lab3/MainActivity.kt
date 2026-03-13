@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         binding.button4.setOnClickListener {
             Toast.makeText(this, "Аннагурбанов Кнопка 2", Toast.LENGTH_LONG).show()
         }
-        binding.button4.setOnClickListener {
+        binding.button5.setOnClickListener {
             Toast.makeText(this, "Аннагурбанов Кнопка 3", Toast.LENGTH_LONG).show()
         }
 
