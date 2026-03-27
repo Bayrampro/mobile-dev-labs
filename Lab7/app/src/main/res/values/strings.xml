@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Мое приложение</string>
+    <string name="list_title">Мой список</string>
+    <string-array name="items_array">
+        <item>Джош</item>
+        <item>Стивен</item>
+        <item>Брюс</item>
+    </string-array>
+    <string name="name_and_surname">ФИО</string>
+    <string name="login">Логин</string>
+    <string name="email">Почта</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="password">Пароль</string>
+    <string name="confirm_password">Повтор пароля</string>
+    <string name="date_of_birth">Дата рождения</string>
+    <string name="registrationText">Регистрация</string>
+    <string name="conf">Согласие на обработку данных</string>
+    <string name="nav">Перейти к регистрации</string>
+</resources>

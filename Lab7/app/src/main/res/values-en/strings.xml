@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">My Application</string>
+    <string name="list_title">Мy List</string>
+    <string-array name="items_array">
+        <item>Josh</item>
+        <item>Steven</item>
+        <item>Bruce</item>
+    </string-array>
+    <string name="name_and_surname">Name</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="registrationText">Registration</string>
+    <string name="conf">Consent to data processing</string>
+    <string name="nav">Get started</string>
+</resources>

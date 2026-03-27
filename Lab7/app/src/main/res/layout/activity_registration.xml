@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="16dp"
+        tools:context=".RegistrationActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/registrationText"
+            android:textAlignment="center"
+            android:textSize="40sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/fio"
+            android:layout_marginTop="16dp"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:hint="@string/name_and_surname"/>
+
+        <EditText
+            android:id="@+id/login"
+            android:layout_marginTop="16dp"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:hint="@string/login"/>
+
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_marginTop="16dp"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email"/>
+
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_marginTop="16dp"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:inputType="phone"
+            android:hint="@string/phone_number"/>
+
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_marginTop="16dp"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:inputType="textPassword"
+            android:hint="@string/password"/>
+
+
+        <EditText
+            android:id="@+id/confirmPassword"
+            android:layout_marginTop="16dp"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:inputType="textPassword"
+            android:hint="@string/confirm_password"/>
+
+
+        <EditText
+            android:id="@+id/dateOfBirth"
+            android:layout_marginTop="16dp"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:focusable="false"
+            android:clickable="true"
+            android:drawableEnd="@android:drawable/ic_menu_my_calendar"
+            android:hint="@string/date_of_birth"/>
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_marginTop="16dp"
+            android:layout_width="300dp"
+            android:layout_height="60dp"/>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/conf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/conf"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/regButton"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:text="@string/registrationText" />
+
+    </LinearLayout>
+
+</ScrollView>
