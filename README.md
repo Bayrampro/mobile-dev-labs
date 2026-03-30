@@ -5,3 +5,4 @@
 - [Практическая работа №5 — Дополнительные Activity (настройки и «Об авторе»)](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab5)
 - [Практическая работа №6 — Отладка приложений. Logcat и таймеры](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab6)
 - [Практическая работа №7 — Локализация и списки. Формы ввода и валидация данных](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab7)
+- [Практическая работа №8 — Ресурсы. Работа с медиа-элементами](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab8)
