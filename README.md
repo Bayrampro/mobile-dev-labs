@@ -7,3 +7,4 @@
 - [Практическая работа №7 — Локализация и списки. Формы ввода и валидация данных](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab7)
 - [Практическая работа №8 — Ресурсы. Работа с медиа-элементами](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab8)
 - [Практическая работа №9 — Создание меню](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab9)
+- [Практическая работа №10 — Использование аппаратных возможностей устройства](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab10)
