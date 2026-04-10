@@ -8,3 +8,4 @@
 - [Практическая работа №8 — Ресурсы. Работа с медиа-элементами](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab8)
 - [Практическая работа №9 — Создание меню](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab9)
 - [Практическая работа №10 — Использование аппаратных возможностей устройства](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab10)
+- [Практическая работа №11 — Многопоточность в Android. Асинхронная загрузка данных](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab11)
