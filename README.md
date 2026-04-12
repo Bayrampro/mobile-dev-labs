@@ -10,3 +10,4 @@
 - [Практическая работа №10 — Использование аппаратных возможностей устройства](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab10)
 - [Практическая работа №11 — Многопоточность в Android. Асинхронная загрузка данных](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab11)
 - [Практическая работа №12 — Типы активностей. SharedPreferences](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab12)
+- [Практическая работа №13 — Обработка жестов](https://github.com/Bayrampro/mobile-dev-labs/tree/main/Lab13)

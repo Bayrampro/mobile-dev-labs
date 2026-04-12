@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/fullscreenBackgroundColor"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:theme="@style/ThemeOverlay.Lab13.FullscreenContainer"
+    tools:context=".GameActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp">
+
+        <LinearLayout
+            android:id="@+id/topChipsRow"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/topChip1"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/chip_white" />
+
+            <View
+                android:id="@+id/topChip2"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/chip_white" />
+
+            <View
+                android:id="@+id/topChip3"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/chip_white" />
+
+            <View
+                android:id="@+id/topChip4"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/chip_white" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/bottomChipsRow"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/bottomChip1"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/chip_black" />
+
+            <View
+                android:id="@+id/bottomChip2"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/chip_black" />
+
+            <View
+                android:id="@+id/bottomChip3"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/chip_black" />
+
+            <View
+                android:id="@+id/bottomChip4"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/chip_black" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>
